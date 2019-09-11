@@ -1,0 +1,102 @@
+#Mutation
+
+type Mutation{
+
+    createQN(questions: [InputQuestionBlock]!): Questionnaire,
+    updateQuestion(id: String!, title: String, section: String, question: InputQuestionBlock): Questionnaire,
+    deleteQN(id: String!): Questionnaire,
+
+
+    sendAnswers(templateID: String!, answers: [CInputQuestionBlock]! ) : CQuestionnaire,
+    updateAnswer(id: String!, answer: CInputQuestionBlock, title: String, section: String ): CQuestionnaire, 
+
+}
+
+#Query
+
+type Query{
+
+    QN: [Questionnaire],
+    solutions(id: String!): [CQuestionnaire],
+
+}
+
+#Questionnaire
+
+type Questionnaire{
+    
+    questions:[QuestionBlock],
+    _id: String!,
+    
+}
+
+#Question Block
+
+input InputQuestionBlock{
+
+    title: String!,
+    section: String!,
+    questions: [InputQuestion],
+
+}
+
+type QuestionBlock{
+
+    title: String!,
+    section: String!
+    questions: [Question]
+
+}
+
+#Question
+
+input InputQuestion{
+
+    qText: String!,
+    QID: Int,
+    ansType: inputAnswer,
+
+}
+
+type Question{
+
+    qText: String!,
+    QID: Int,
+    ansType: Answer,
+
+}
+
+#Answer 
+
+type Answer{
+
+    type: String!,
+    choices: [Choice],
+    nextQNo: Int,
+
+}
+
+input inputAnswer{
+
+    type: String!,
+    choices: [inputChoice],
+    nextQNo: Int,
+
+}
+
+
+#Choice for MCQs
+
+input inputChoice{
+
+    textDesc: String!,
+    nextQNo: Int,
+
+}
+
+type Choice{
+
+    textDesc: String!,
+    nextQNo: Int,
+
+}

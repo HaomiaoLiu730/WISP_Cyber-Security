@@ -1,0 +1,38 @@
+
+
+#CQuestionnaire
+
+input CInputQuestionnaire{
+    
+    answers:[CInputQuestionBlock],
+    templateID: String!,
+    
+}
+
+type CQuestionnaire{
+    
+    _id:String!,
+    answers:[CQuestionBlock],
+    templateID: String,
+    
+}
+
+#CInputQuestionBlock 
+
+input CInputQuestionBlock{
+
+    title: String!,
+    section: Int!,
+    answer: String!,
+    question: String!
+
+}
+
+type CQuestionBlock{
+
+    title: String!,
+    section: Int!,
+    answer: String!,
+    question: String!
+
+}
